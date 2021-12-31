@@ -7,6 +7,7 @@ using System;
 
 public class CommonTools : MonoBehaviour
 {
+    #region Unity创建脚本默认使用的是GB2312，都是从GB2312->UTF-8
     [MenuItem("CustomToolbar/Common/UTF-8/Select Text Convert UTF-8")]
     static void ConvertSelectTextUTF8()
     {
@@ -48,7 +49,6 @@ public class CommonTools : MonoBehaviour
     {
         var encoding = System.Text.Encoding.GetEncoding("GB2312"); //VS默认的打开模式就是GB2312-80
         string scriptsPath = AllPathConfig.ScriptsPath;//需要转换的路径；
-
         if (Directory.Exists(scriptsPath))
         {
             DirectoryInfo info = new DirectoryInfo(scriptsPath);
@@ -85,5 +85,6 @@ public class CommonTools : MonoBehaviour
             Debug.LogError(msg);
             return;
         }
-    }
+    }  
+    #endregion
 }
