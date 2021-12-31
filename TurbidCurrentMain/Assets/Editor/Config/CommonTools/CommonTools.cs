@@ -19,9 +19,13 @@ public class CommonTools : MonoBehaviour
             var obj = Selection.objects[i];
             string path = AssetDatabase.GetAssetPath(obj);
             if (File.Exists(path))
+            {
                 paths.Add(path);
+            }
             else
+            {
                 directories.Add(path);
+            }
         }
 
         if (directories.Count > 0)
@@ -29,8 +33,11 @@ public class CommonTools : MonoBehaviour
             string[] guids = AssetDatabase.FindAssets("", directories.ToArray());
             for (int i = 0; i < guids.Length; i++)
             {
-                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
-                paths.Add(path);
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]); //会包含文件夹的路径；
+                if (!paths.Contains(path) && File.Exists(path))
+                {
+                    paths.Add(path);
+                }
             }
         }
 
@@ -38,7 +45,9 @@ public class CommonTools : MonoBehaviour
         {
             string path = paths[i];
             ConvertToUTF8(paths[i], System.Text.Encoding.GetEncoding("GB2312"));
+            EditorUtility.DisplayProgressBar("Convert To UTF-8", path,(float)i / paths.Count);
         }
+        EditorUtility.ClearProgressBar();
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
         UnityEngine.Debug.Log($"Scripts Files Total Number:{paths.Count},Scripts Convert UTF-8 is Done");
@@ -49,6 +58,8 @@ public class CommonTools : MonoBehaviour
     {
         var encoding = System.Text.Encoding.GetEncoding("GB2312"); //VS默认的打开模式就是GB2312-80
         string scriptsPath = AllPathConfig.ScriptsPath;//需要转换的路径；
+        List<string> paths = new List<string>();
+
         if (Directory.Exists(scriptsPath))
         {
             DirectoryInfo info = new DirectoryInfo(scriptsPath);
@@ -57,13 +68,17 @@ public class CommonTools : MonoBehaviour
             {
                 if (files[i].Name.EndsWith(".cs"))
                 {
-                    //string content = File.ReadAllText(files[i].FullName, encoding);
-                    //File.WriteAllText(files[i].FullName, content, Encoding.UTF8);
-                    ConvertToUTF8(files[i].FullName, encoding);
+                    paths.Add(files[i].FullName);
                 }
-            }
-            UnityEngine.Debug.Log($"Scripts Files Total Number:{files.Length},Scripts Convert UTF-8 is Done");
+            }          
         }
+        for (int i = 0; i < paths.Count; i++)
+        {
+            ConvertToUTF8(paths[i], encoding);
+            EditorUtility.DisplayProgressBar("Convert To UTF-8", paths[i], (float)i / paths.Count);
+        }
+        EditorUtility.ClearProgressBar();
+        UnityEngine.Debug.Log($"Scripts Files Total Number:{paths.Count},Scripts Convert UTF-8 is Done");
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
     }
