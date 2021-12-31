@@ -29,4 +29,10 @@ public class ConfigConverterSettings : ScriptableObject
         }
         Debug.Log("Clear AddressableGroups Entries Done!");
     }
+
+    [MenuItem("CustomToolbar/Addressable/Reset Groups")]
+    static void ResetGroups_Main()
+    {
+
+    }
 }
