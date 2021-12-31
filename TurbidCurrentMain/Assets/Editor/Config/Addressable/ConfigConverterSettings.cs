@@ -32,7 +32,7 @@ public class ConfigConverterSettings : ScriptableObject
 
     [MenuItem("CustomToolbar/Addressable/Reset Groups")]
     static void ResetGroups_Main()
-    {
+    { 
 
     }
 }
