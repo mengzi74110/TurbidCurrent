@@ -63,7 +63,7 @@ public class CommonTools : MonoBehaviour
         if (Directory.Exists(scriptsPath))
         {
             DirectoryInfo info = new DirectoryInfo(scriptsPath);
-            FileInfo[] files = info.GetFiles("*", SearchOption.AllDirectories);
+            FileInfo[] files = info.GetFiles("*", SearchOption.AllDirectories);//递归整个文件夹下所有的文件信息；
             for (int i = 0; i < files.Length; i++)
             {
                 if (files[i].Name.EndsWith(".cs"))
