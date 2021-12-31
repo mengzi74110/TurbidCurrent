@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -46,8 +46,8 @@ public class CommonTools : MonoBehaviour
     [MenuItem("CustomToolbar/Common/UTF-8/All Scripts Convert UTF-8")]
     static void ConvertAllScriptsToUTF8()
     {
-        var encoding = System.Text.Encoding.GetEncoding("GB2312"); //VSÄ¬ÈÏµÄ´ò¿ªÄ£Ê½¾ÍÊÇGB2312-80
-        string scriptsPath = AllPathConfig.ScriptsPath;//ĞèÒª×ª»»µÄÂ·¾¶£»
+        var encoding = System.Text.Encoding.GetEncoding("GB2312"); //VSé»˜è®¤çš„æ‰“å¼€æ¨¡å¼å°±æ˜¯GB2312-80
+        string scriptsPath = AllPathConfig.ScriptsPath;//éœ€è¦è½¬æ¢çš„è·¯å¾„ï¼›
 
         if (Directory.Exists(scriptsPath))
         {
