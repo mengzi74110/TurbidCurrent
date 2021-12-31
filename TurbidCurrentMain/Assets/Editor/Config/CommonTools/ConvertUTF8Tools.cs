@@ -57,7 +57,7 @@ public class ConvertUTF8Tools : MonoBehaviour
     static void ConvertAllScriptsToUTF8()
     {
         var encoding = System.Text.Encoding.GetEncoding("GB2312"); //VS默认的打开模式就是GB2312-80
-        string scriptsPath = AllPathConfig.ScriptsPath;//需要转换的路径；
+        string scriptsPath = AllEditorPathConfig.ScriptsPath;//需要转换的路径；
         List<string> paths = new List<string>();
 
         if (Directory.Exists(scriptsPath))
@@ -84,6 +84,14 @@ public class ConvertUTF8Tools : MonoBehaviour
         AssetDatabase.SaveAssets();
     }
 
+    [MenuItem("CustomToolbar/Common/Path Config")]
+    static void SelectFBGameConfig()
+    {
+        string path = "Assets/Editor/Config/AllEditorPathConfig.cs";
+        UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath(path, typeof(TextAsset));
+        if (obj)
+            Selection.SetActiveObjectWithContext(obj, null);
+    }
     static void ConvertToUTF8(string filePath, Encoding encoding)
     {
         string content;
