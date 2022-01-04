@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class AllEditorPathConfig
 {
+    public static string SettingFilePath = "Assets/Editor/Config/ConfigConvert/ConfigConverterSettings_Config.csv";
+
     public static string ScriptsPath = "Assets/MainProject/Scripts";
     public static string TargetTblFolder = "Assets/MainProject/Config/Tbl/";
     public const string TargetAssetFolder = "Assets/MainProject/Config/Asset/";
