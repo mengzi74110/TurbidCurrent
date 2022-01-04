@@ -38,7 +38,7 @@ public class AddressableGroupSetter : ScriptableObject
 
     [MenuItem("CustomToolbar/Addressable/Reset Groups")]
     static void ResetGroups_Main()
-    { 
-
+    {
+        Debug.Log("TODO：补全打包设置相关代码");
     }
 }
