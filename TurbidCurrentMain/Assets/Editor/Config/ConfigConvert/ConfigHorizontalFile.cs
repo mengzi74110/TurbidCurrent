@@ -53,7 +53,7 @@ public class ConfigHorizontalFile : ConfigFile
 
         StringBuilder sb = new StringBuilder();
         sb.AppendLine("// 本文件中的代码为生成的代码，不允许手动修改");
-        sb.AppendLine("using Common;");
+        //sb.AppendLine("using Common;");
         sb.AppendLine("using System;");
         sb.AppendLine("using System.IO;");
         sb.AppendLine("using UnityEngine;");
