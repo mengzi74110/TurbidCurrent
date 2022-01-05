@@ -8,7 +8,7 @@ using UnityEditor.AddressableAssets.Settings;
 public class AddressableGroupSetter : ScriptableObject
 {
     public static AddressableAssetSettings CurSettings => AddressableAssetSettingsDefaultObject.Settings;
-
+  
 
     [MenuItem("CustomToolbar/Addressable/Clear Groups")]
     static void ClearGroups()
@@ -40,5 +40,28 @@ public class AddressableGroupSetter : ScriptableObject
     static void ResetGroups_Main()
     {
         Debug.Log("TODO：补全打包设置相关代码");
+    }
+
+
+
+    [MenuItem("CustomToolbar/Addressable/Find AddressName By GUID")]
+    static void FindAddressNameByGuid()
+    {
+        bool isFindTarget = false;
+        string guid = "???";
+        foreach (var group in CurSettings.groups)
+        {
+            foreach (var entry in group.entries)
+            {
+                if (entry.guid == guid)
+                {
+                    isFindTarget = true;
+                    Debug.Log($"Find Target,Address: {entry.address} ,Path: {entry.AssetPath} ,GUID: {entry.guid} ");
+                }
+            }
+        }
+
+        if (isFindTarget == false)
+            Debug.Log($"Don't Find Address By GUID: {guid} ");
     }
 }
