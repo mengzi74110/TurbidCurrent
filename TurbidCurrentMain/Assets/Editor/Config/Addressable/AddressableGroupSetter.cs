@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 
+
+
 public class AddressableGroupSetter : ScriptableObject
 {
     public static AddressableAssetSettings CurSettings => AddressableAssetSettingsDefaultObject.Settings;
