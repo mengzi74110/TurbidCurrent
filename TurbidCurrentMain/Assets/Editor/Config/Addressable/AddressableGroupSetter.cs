@@ -4,13 +4,22 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
-
-
+using static UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema;
+using System.Text;
+using System;
 
 public class AddressableGroupSetter : ScriptableObject
 {
     public static AddressableAssetSettings CurSettings => AddressableAssetSettingsDefaultObject.Settings;
-  
+    static List<AddressableGroupData> s_listGroupData;
+    static StringBuilder s_sb = new StringBuilder();
+
+    public enum GroupType
+    {
+        Local,              // 打到本地
+        RemoteLogin,        // 打到远端，登陆时下载
+        RemoteDynamic,      // 打到远端，动态下载，或者静默下载
+    }
 
     [MenuItem("CustomToolbar/Addressable/Clear Groups")]
     static void ClearGroups()
@@ -30,12 +39,14 @@ public class AddressableGroupSetter : ScriptableObject
             CurSettings.RemoveAssetEntry(item);
         }
         Debug.Log("Clear AddressableGroups Entries Done!");
-        //移除Groups
+        //1:移除Groups
         //var listGroups = CurSettings.groups;
         //for (int i = 0; i < listGroups.Count; i++)
         //{
         //    CurSettings.RemoveGroup(listGroups[i]);
         //}
+        //2：移除Groups
+        //CurSettings.groups.Clear();
     }
 
     [MenuItem("CustomToolbar/Addressable/Reset Groups")]
@@ -43,6 +54,110 @@ public class AddressableGroupSetter : ScriptableObject
     {
         Debug.Log("TODO：补全打包设置相关代码");
     }
+    #region 分组相关信息设置
+
+    static void ResetAllGroups()
+    {
+        // prefab
+        ResetGroup<GameObject>("main_prefab", BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}Prefab/", "f:*.prefab", assetPath =>
+        {
+            return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.Folder_main + "Prefab/");
+        });
+
+        //// config
+        //ResetGroup<TextAsset>("config", BundlePackingMode.PackTogether, $"{Folder_main}Config/", "f:*.txt", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_main);
+        //});
+
+        //// ai
+        //ResetGroup<ScriptableObject>("main_ai", BundlePackingMode.PackTogether, $"{Folder_main}AI/", "f:*.asset", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_main);
+        //});
+
+        //// anim
+        //ResetGroup<RuntimeAnimatorController>("main_anim", BundlePackingMode.PackTogether, $"{Folder_main}Anim/", "f:*.controller", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_main);
+        //});
+        //ResetGroup<RuntimeAnimatorController>("music_anim", BundlePackingMode.PackTogether, $"{Folder_music}Anim/female/", "f:*.anim", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_music);
+        //});
+
+        ///*
+        //// scene
+        //ResetGroup<RuntimeAnimatorController>("art_scene", BundlePackingMode.PackTogether, $"{Folder_art}Scenes/", "f:*.unity", assetPath =>
+        //{
+        //    return GetAddress_RelativePath(assetPath, Folder_art);
+        //});*/
+
+        //// scene
+        //ResetGroup<RuntimeAnimatorController>("art_image", BundlePackingMode.PackTogether, $"{Folder_art}Image/", "t:Texture2D", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_art);
+        //});
+
+        //// mat
+        //ResetGroup<RuntimeAnimatorController>("main_material", BundlePackingMode.PackTogether, $"{Folder_main}Material/", "f:*.mat", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_main);
+        //});
+
+        //// dance music
+        //ResetGroup<AudioClip>("dance_music", BundlePackingMode.PackTogether, $"{Folder_music}DanceMusic/", "f:*.mp3", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_music);
+        //});
+
+        //// dance data
+        //ResetGroup<ScriptableObject>("dance_data", BundlePackingMode.PackTogether, $"{Folder_music}DanceData/", "f:*.asset", assetPath =>
+        //{
+        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_music);
+        //});
+    }
+
+
+    static List<AddressableGroupData> GetGroupDatas(bool calCHash)
+    {
+        if (calCHash)
+        {
+            foreach (var item in s_listGroupData)
+            {
+                //TODO：计算哈希值；
+            }
+        }
+        return s_listGroupData;
+    }
+
+    static void ResetGroup<T>(string groupName, BundlePackingMode packMode, string assetFolder, string filter, Func<string, string> getAddress)
+    {
+        GroupType groupType = GroupType.Local;
+#if UNITY_EDITOR_OSX
+        if (groupType == GroupType.RemoteLogin)
+            groupType = GroupType.Local;
+#endif
+
+        AddressableGroupData data = new AddressableGroupData(groupName,groupType, packMode, typeof(T));
+        data.GetAssets(assetFolder, filter, getAddress);
+        RegisterGroupData(data);
+    }
+
+    public static void RegisterGroupData(AddressableGroupData data)
+    {
+        if (data == null)
+            return;
+        if (s_listGroupData == null)
+            s_listGroupData = new List<AddressableGroupData>();
+        s_listGroupData.Add(data);
+    }
+
+
+    #endregion
+
+
+
 
 
 
