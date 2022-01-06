@@ -19,9 +19,9 @@ public class TextureCompressTool : ScriptableObject
                 for (int i = 0; i < files.Length; i++)
                 {
                     string filepath = files[i];
-                    if (FBEditorHelper.IsImage(filepath))
+                    if (EditorHelper.IsImage(filepath))
                     {
-                        string assetpath = FBEditorHelper.GetAssetPath(filepath);
+                        string assetpath = EditorHelper.GetAssetPath(filepath);
                         if (!list.Contains(assetpath))
                             list.Add(assetpath);
                     }
