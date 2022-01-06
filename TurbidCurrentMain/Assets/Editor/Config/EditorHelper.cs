@@ -13,8 +13,15 @@ public class EditorHelper
         string ext = Path.GetExtension(path);
         return ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".tga";
     }
-   
 
+
+    /// <summary>
+    /// 获取指定目录的资源
+    /// </summary>
+    /// <param name="filter">过滤器：
+    /// 若以t:开头，表示用unity的方式过滤; 
+    /// 若以f:开头，表示用windows的SearchPattern方式过滤; 
+    /// 若以r:开头，表示用正则表达式的方式过滤。</param>
     public static string[] GetAssets(string folder, string filter)
     {
         if (string.IsNullOrEmpty(folder))
@@ -83,7 +90,6 @@ public class EditorHelper
             fullPath :
             "Assets" + fullPath.Substring(Application.dataPath.Length);
     }
-
     public static string GetAddress_RelativePath(string assetPath, string targetFolder)
     {
         targetFolder = targetFolder.TrimEnd('/') + '/';
