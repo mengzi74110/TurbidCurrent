@@ -4,10 +4,15 @@ using System.IO;
 using System;
 using System.Text.RegularExpressions;
 using UnityEditor;
+using System.Security.Cryptography;
+using System.Text;
 
 //编辑器辅助类
 public class EditorHelper
 {
+    static MD5 s_md5;
+    static MD5 MD5Obj => s_md5 ??= MD5.Create();
+
     public static bool IsImage(string path)
     {
         string ext = Path.GetExtension(path);
@@ -100,5 +105,60 @@ public class EditorHelper
         address = address.Replace("/", "@").Replace("\\", "@");
         return address;
     }
+    public static byte[] ReadAssetBytes(string assetPath)
+    {
+        if (!File.Exists(assetPath))
+            return null;
+        return File.ReadAllBytes(assetPath);
+    }
+    #region 哈希码相关的计算方法
+    // 计算单个文件 + 依赖项的哈希码
+    public static string ComputeHashWithDependencies(string assetPath)
+    {
+        List<byte> list = ReadAssetWithDependenciesBytes(assetPath);
+        return ComputeHash(list.ToArray());
+    }
+    public static List<byte> ReadAssetWithDependenciesBytes(string assetPath)
+    {
+        byte[] buffer = ReadAssetBytes(assetPath);
+        if (buffer == null)
+            return new List<byte>();
+
+        List<byte> list = new List<byte>(buffer);
+
+        // 依赖项
+        string[] dependencies = AssetDatabase.GetDependencies(new string[] { assetPath });
+        foreach (var d in dependencies)
+        {
+            byte[] bufferOfD = ReadAssetBytes(d);
+            if (bufferOfD != null)
+                list.AddRange(bufferOfD);
+        }
+
+        return list;
+    }
+    public static string ComputeHash(byte[] buffer)
+    {
+        if (buffer == null || buffer.Length < 1)
+            return "";
+
+        byte[] hash = MD5Obj.ComputeHash(buffer);
+        StringBuilder sb = new StringBuilder();
+
+        foreach (var b in hash)
+            sb.Append(b.ToString("x2"));
+
+        return sb.ToString();
+    }
+
+    //计算单个资源的哈希码
+    public static string ComputeHashByAssetpath(string assetPath)
+    {
+        if (!File.Exists(assetPath))
+            return "???";
+        byte[] buffer = File.ReadAllBytes(assetPath);
+        return ComputeHash(buffer);
+    }
+    #endregion
 
 }
