@@ -7,6 +7,7 @@ using UnityEditor.AddressableAssets.Settings;
 using static UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema;
 using System.Text;
 using System;
+using System.IO;
 
 public class AddressableGroupSetter : ScriptableObject
 {
@@ -181,6 +182,29 @@ public class AddressableGroupSetter : ScriptableObject
     }
 
 
+    #endregion
+
+
+
+    #region 线上维护打包
+    [MenuItem("CustomToolbar/OnLinePacke/Reset Groups Main")]
+    static void Package_ResetGoupsMain()
+    {
+        var groupDatas = GetGroupDatas(true);
+        foreach (var item in groupDatas)
+        {
+            item.CreatGroup();
+        }
+        s_sb.Length = 0;
+        foreach (var item in groupDatas)
+        {
+            s_sb.Append(item.ToString());
+        }
+        string groupDatafilePath= $"{AllEditorPathConfig.GroupDataFileFolder}main_{EditorHelper.GetPlatformString()}.txt";
+        EditorHelper.TryCreatDir(groupDatafilePath);
+        File.WriteAllText(groupDatafilePath, s_sb.ToString(), Encoding.UTF8);
+        Debug.Log("Write group data file done: " + groupDatafilePath);
+    } 
     #endregion
 
 }

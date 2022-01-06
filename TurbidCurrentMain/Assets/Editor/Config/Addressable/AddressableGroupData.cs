@@ -153,4 +153,24 @@ public class AddressableGroupData
         m_packMode = packingMode;
         m_assetType = assetType;
     }
+    public override string ToString()
+    {
+        s_sb.Length = 0;
+        s_sb.AppendLine("/////////////////////");
+        s_sb.AppendLine($"GroupName:{GroupName}");
+        s_sb.AppendLine($"GroupType:{GroupType}");
+        s_sb.AppendLine($"PackMode:{PackMode}");
+        s_sb.AppendLine($"AssetType:{m_assetType}");
+        s_sb.AppendLine($"AssetsCount:{Assets.Length}");
+        for (int i = 0; i < Assets.Length; i++)
+        {
+            string assetpath = Assets[i];
+            string address = AddressNames[i];
+            string hash = m_assetsHash != null ? m_assetsHash[i] : "???";
+            s_sb.AppendLine($"Asset:{assetpath}\t{address}\t{hash}");
+        }
+        s_sb.AppendLine();
+
+        return s_sb.ToString();
+    }
 }
