@@ -7,6 +7,8 @@ public static class AllEditorPathConfig
     //打包相关路径
     public static string Folder_main = "Assets/MainProject/BuildAssets/";
 
+    //线上维护：保存打包的资源 哈希值相关信息；
+    public static string GroupDataFileFolder = "Assets/Editor/Config/Addressable/GroupData/";
 
 
     //Excel转换配置文件路径；
