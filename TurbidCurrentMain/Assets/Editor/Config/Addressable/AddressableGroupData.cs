@@ -22,7 +22,7 @@ public class AddressableGroupData
 
     string[] m_assets;
     string[] m_addressNames;
-
+    string[] m_assetsHash;
     public string[] Assets => m_assets;
     public string[] AddressNames => m_addressNames;
     public string GroupName => m_groupName;
@@ -114,6 +114,25 @@ public class AddressableGroupData
         return entry;
     }
     #endregion
+
+    //计算哈希值；
+    public void CalcHash()
+    {
+        if (Assets == null)
+        {
+            Debug.LogError("Assets == null");
+            return;
+        }
+        m_assetsHash = new string[Assets.Length];
+        for (int i = 0; i < Assets.Length; i++)
+        {
+            //如果使用依赖项的方法计算哈希，热更会扫描出很多不需要的文件；
+            //m_assetsHash[i] = EditorHelper.ComputeHashWithDependencies(Assets[i]);
+            
+            //只计算单个资源的哈希码；
+            m_assetsHash[i] = EditorHelper.ComputeHashByAssetpath(Assets[i]);
+        }
+    }
     public void GetAssets(string assetFolder,string filter, Func<string, string> getAddress)
     {
         this.m_assetFilter = filter;
@@ -126,6 +145,7 @@ public class AddressableGroupData
             m_addressNames[i] = getAddress(m_assets[i].ToLower().Replace(" ", ""));
         }
     }
+
     public AddressableGroupData(string groupName,AddressableGroupSetter.GroupType groupType,BundlePackingMode packingMode,Type assetType)
     {
         m_groupName = groupName;

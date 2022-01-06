@@ -59,18 +59,52 @@ public class AddressableGroupSetter : ScriptableObject
         }
         Debug.Log("~~ Reset Groups Done ~~");
     }
+  
+    [MenuItem("CustomToolbar/Addressable/Find AddressName By GUID")]
+    static void FindAddressNameByGuid()
+    {
+        bool isFindTarget = false;
+        string guid = "???";
+        foreach (var group in CurSettings.groups)
+        {
+            foreach (var entry in group.entries)
+            {
+                if (entry.guid == guid)
+                {
+                    isFindTarget = true;
+                    Debug.Log($"Find Target,Address: {entry.address} ,Path: {entry.AssetPath} ,GUID: {entry.guid} ");
+                }
+            }
+        }
+
+        if (isFindTarget == false)
+            Debug.Log($"Don't Find Address By GUID: {guid} ");
+    }
+    static List<AddressableGroupData> GetGroupDatas(bool calCHash)
+    {
+        ResetAllGroups();
+        if (calCHash)
+        {
+            foreach (var item in s_listGroupData)
+            {
+                //计算哈希值；
+                item.CalcHash();
+            }
+        }
+        return s_listGroupData;
+    }
     #region 分组相关信息设置
 
     static void ResetAllGroups()
     {
         // prefab
-        ResetGroup<GameObject>("main_prefab",GroupType.RemoteDynamic,BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}Prefab/", "f:*.prefab", assetPath =>
+        ResetGroup<GameObject>("main_prefab", GroupType.RemoteDynamic, BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}Prefab/", "f:*.prefab", assetPath =>
         {
             return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.Folder_main + "Prefab/");
         });
 
         // config
-        ResetGroup<TextAsset>("config", GroupType.RemoteLogin,BundlePackingMode.PackTogether, AllEditorPathConfig.TargetTblFolder, "f:*.txt", assetPath =>
+        ResetGroup<TextAsset>("config", GroupType.RemoteLogin, BundlePackingMode.PackTogether, AllEditorPathConfig.TargetTblFolder, "f:*.txt", assetPath =>
         {
             return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.TargetTblFolder);
         });
@@ -123,21 +157,7 @@ public class AddressableGroupSetter : ScriptableObject
         //});
     }
 
-
-    static List<AddressableGroupData> GetGroupDatas(bool calCHash)
-    {
-        ResetAllGroups();
-        if (calCHash)
-        {
-            foreach (var item in s_listGroupData)
-            {
-                //TODO：计算哈希值；
-            }
-        }
-        return s_listGroupData;
-    }
-
-    static void ResetGroup<T>(string groupName, GroupType groupType,BundlePackingMode packMode, string assetFolder, string filter, Func<string, string> getAddress)
+    static void ResetGroup<T>(string groupName, GroupType groupType, BundlePackingMode packMode, string assetFolder, string filter, Func<string, string> getAddress)
     {
         Debug.Log("暂时把所有的GroupType 设置为GroupType.Local");
         groupType = GroupType.Local;
@@ -146,7 +166,7 @@ public class AddressableGroupSetter : ScriptableObject
             groupType = GroupType.Local;
 #endif
 
-        AddressableGroupData data = new AddressableGroupData(groupName,groupType, packMode, typeof(T));
+        AddressableGroupData data = new AddressableGroupData(groupName, groupType, packMode, typeof(T));
         data.GetAssets(assetFolder, filter, getAddress);
         RegisterGroupData(data);
     }
@@ -163,29 +183,4 @@ public class AddressableGroupSetter : ScriptableObject
 
     #endregion
 
-
-
-
-
-
-    [MenuItem("CustomToolbar/Addressable/Find AddressName By GUID")]
-    static void FindAddressNameByGuid()
-    {
-        bool isFindTarget = false;
-        string guid = "???";
-        foreach (var group in CurSettings.groups)
-        {
-            foreach (var entry in group.entries)
-            {
-                if (entry.guid == guid)
-                {
-                    isFindTarget = true;
-                    Debug.Log($"Find Target,Address: {entry.address} ,Path: {entry.AssetPath} ,GUID: {entry.guid} ");
-                }
-            }
-        }
-
-        if (isFindTarget == false)
-            Debug.Log($"Don't Find Address By GUID: {guid} ");
-    }
 }
