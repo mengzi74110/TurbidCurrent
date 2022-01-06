@@ -161,4 +161,24 @@ public class EditorHelper
     }
     #endregion
 
+    public static void TryCreatDir(string filePath)
+    {
+        if (string.IsNullOrEmpty(filePath))
+            return;
+        string dirName = Path.GetDirectoryName(filePath);
+        if (!Directory.Exists(dirName))
+            Directory.CreateDirectory(dirName); //没有的文件夹都会递归创建；
+    }
+    public static string GetPlatformString()
+    {
+#if UNITY_ANDROID
+        return "android";
+#elif UNITY_IPHONE
+        return "ios";
+#else
+        Debug.LogError("Unexpected platform");
+        return "pc";
+#endif
+
+    }
 }
