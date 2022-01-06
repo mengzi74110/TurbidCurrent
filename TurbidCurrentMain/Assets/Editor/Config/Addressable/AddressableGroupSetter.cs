@@ -52,22 +52,27 @@ public class AddressableGroupSetter : ScriptableObject
     [MenuItem("CustomToolbar/Addressable/Reset Groups")]
     static void ResetGroups_Main()
     {
-        Debug.Log("TODO：补全打包设置相关代码");
+        List<AddressableGroupData> groupDatas = GetGroupDatas(false);
+        foreach (var item in groupDatas)
+        {
+            item.CreatGroup();
+        }
+        Debug.Log("~~ Reset Groups Done ~~");
     }
     #region 分组相关信息设置
 
     static void ResetAllGroups()
     {
         // prefab
-        ResetGroup<GameObject>("main_prefab", BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}Prefab/", "f:*.prefab", assetPath =>
+        ResetGroup<GameObject>("main_prefab",GroupType.RemoteDynamic,BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}Prefab/", "f:*.prefab", assetPath =>
         {
             return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.Folder_main + "Prefab/");
         });
 
         // config
-        ResetGroup<TextAsset>("config", BundlePackingMode.PackTogether, AllEditorPathConfig.TargetTblFolder, "f:*.txt", assetPath =>
+        ResetGroup<TextAsset>("config", GroupType.RemoteLogin,BundlePackingMode.PackTogether, AllEditorPathConfig.TargetTblFolder, "f:*.txt", assetPath =>
         {
-            return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.Folder_main);
+            return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.TargetTblFolder);
         });
 
         //// ai
@@ -121,6 +126,7 @@ public class AddressableGroupSetter : ScriptableObject
 
     static List<AddressableGroupData> GetGroupDatas(bool calCHash)
     {
+        ResetAllGroups();
         if (calCHash)
         {
             foreach (var item in s_listGroupData)
@@ -131,9 +137,10 @@ public class AddressableGroupSetter : ScriptableObject
         return s_listGroupData;
     }
 
-    static void ResetGroup<T>(string groupName, BundlePackingMode packMode, string assetFolder, string filter, Func<string, string> getAddress)
+    static void ResetGroup<T>(string groupName, GroupType groupType,BundlePackingMode packMode, string assetFolder, string filter, Func<string, string> getAddress)
     {
-        GroupType groupType = GroupType.Local;
+        Debug.Log("暂时把所有的GroupType 设置为GroupType.Local");
+        groupType = GroupType.Local;
 #if UNITY_EDITOR_OSX
         if (groupType == GroupType.RemoteLogin)
             groupType = GroupType.Local;
