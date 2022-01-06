@@ -84,12 +84,12 @@ public class EditorHelper
             "Assets" + fullPath.Substring(Application.dataPath.Length);
     }
 
-    public static string GetAddress_RelativePath(string assetPath, string imageFolder)
+    public static string GetAddress_RelativePath(string assetPath, string targetFolder)
     {
-        imageFolder = imageFolder.TrimEnd('/') + '/';
+        targetFolder = targetFolder.TrimEnd('/') + '/';
         string ext = Path.GetExtension(assetPath);
-        int startIndex = imageFolder.Length;
-        int len = assetPath.Length - imageFolder.Length - ext.Length;
+        int startIndex = targetFolder.Length;
+        int len = assetPath.Length - targetFolder.Length - ext.Length;
         string address = assetPath.Substring(startIndex, len);
         address = address.Replace("/", "@").Replace("\\", "@");
         return address;
