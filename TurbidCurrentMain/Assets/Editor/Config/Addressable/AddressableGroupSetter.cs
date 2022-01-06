@@ -64,11 +64,11 @@ public class AddressableGroupSetter : ScriptableObject
             return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.Folder_main + "Prefab/");
         });
 
-        //// config
-        //ResetGroup<TextAsset>("config", BundlePackingMode.PackTogether, $"{Folder_main}Config/", "f:*.txt", assetPath =>
-        //{
-        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_main);
-        //});
+        // config
+        ResetGroup<TextAsset>("config", BundlePackingMode.PackTogether, AllEditorPathConfig.TargetTblFolder, "f:*.txt", assetPath =>
+        {
+            return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.Folder_main);
+        });
 
         //// ai
         //ResetGroup<ScriptableObject>("main_ai", BundlePackingMode.PackTogether, $"{Folder_main}AI/", "f:*.asset", assetPath =>
