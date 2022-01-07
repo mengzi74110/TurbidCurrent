@@ -26,10 +26,10 @@ public class AddressableGroupSetter : ScriptableObject
     static void ClearGroups()
     {
         List<string> guids = new List<string>();
+        guids.Clear();
         //只移除groups下面的条目，不移除groups。（在Mac下，移除Groups以后，Groups的设置 莫名其妙重置的bug）
         foreach (var group in CurSettings.groups)
         {
-            guids.Clear();
             foreach (var item in group.entries)
             {
                 guids.Add(item.guid);
@@ -101,6 +101,7 @@ public class AddressableGroupSetter : ScriptableObject
         // prefab
         ResetGroup<GameObject>("main_prefab", GroupType.RemoteDynamic, BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}Prefab/", "f:*.prefab", assetPath =>
         {
+            Debug.Log($"assetPath:{assetPath}");
             return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.Folder_main + "Prefab/");
         });
 
