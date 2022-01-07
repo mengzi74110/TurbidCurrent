@@ -83,6 +83,8 @@ public class AddressableGroupSetter : ScriptableObject
     }
     static List<AddressableGroupData> GetGroupDatas(bool calCHash)
     {
+        if (s_listGroupData != null)
+            s_listGroupData.Clear();
         ResetAllGroups();
         if (calCHash)
         {
@@ -196,16 +198,18 @@ public class AddressableGroupSetter : ScriptableObject
         {
             item.CreatGroup();
         }
-        s_sb.Clear();
         s_sb.Length = 0;
-        Debug.Log(s_sb.ToString());
+        Debug.Log("groupDatas numbers: " + groupDatas.Count);
         foreach (var item in groupDatas)
         {
             s_sb.Append(item.ToString());
         }
         string groupDatafilePath= $"{AllEditorPathConfig.GroupDataFileFolder}main_{EditorHelper.GetPlatformString()}.txt";
         EditorHelper.TryCreatDir(groupDatafilePath);
+
         File.WriteAllText(groupDatafilePath, s_sb.ToString(), Encoding.UTF8);
+
+        AssetDatabase.Refresh();
         Debug.Log("Write group data file done: " + groupDatafilePath);
     } 
     #endregion
