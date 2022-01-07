@@ -195,7 +195,9 @@ public class AddressableGroupSetter : ScriptableObject
         {
             item.CreatGroup();
         }
+        s_sb.Clear();
         s_sb.Length = 0;
+        Debug.Log(s_sb.ToString());
         foreach (var item in groupDatas)
         {
             s_sb.Append(item.ToString());

@@ -176,7 +176,7 @@ public class EditorHelper
 #elif UNITY_IPHONE
         return "ios";
 #else
-        Debug.LogError("Unexpected platform");
+        Debug.Log("Unexpected platform");
         return "pc";
 #endif
 
