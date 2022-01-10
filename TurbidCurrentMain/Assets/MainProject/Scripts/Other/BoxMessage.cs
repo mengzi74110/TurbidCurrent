@@ -1,16 +1,15 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace TurbidCurrent
 {
-    public class BoxMessage 
+    public class BoxMessage
     {
         private static Dictionary<string, Delegate> m_DicMessage;
-        
+
         //禁止注册同名消息；
-        public static void RegisterMessage(string messageName,Delegate callBack)
+        public static void RegisterMessage(string messageName, CallBack callBack)
         {
             if (m_DicMessage == null)
                 m_DicMessage = new Dictionary<string, Delegate>();
@@ -26,10 +25,10 @@ namespace TurbidCurrent
         {
             if (m_DicMessage.ContainsKey(messageName))
             {
-                Action callBack = m_DicMessage[messageName] as Action ;
+                CallBack callBack = m_DicMessage[messageName] as CallBack;
                 if (callBack != null)
                     callBack();
-                m_DicMessage.Remove(messageName);    
+                m_DicMessage.Remove(messageName);
             }
         }
     }
