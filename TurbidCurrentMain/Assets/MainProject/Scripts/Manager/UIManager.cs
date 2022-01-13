@@ -13,6 +13,7 @@ namespace TurbidCurrent
         private Dictionary<UIFlag, UIBase> m_AllUIBaseDic = new Dictionary<UIFlag, UIBase>();
         //正在加载的UI界面；
         private List<UIFlag> cachingUI = new List<UIFlag>();
+
         private List<BundlePrefab> assets = new List<BundlePrefab>();
 
         public void ShowUIAsync(UIFlag flag,object uiData)
