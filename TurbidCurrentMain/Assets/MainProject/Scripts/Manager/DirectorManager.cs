@@ -18,5 +18,10 @@ namespace TurbidCurrent
             m_currentDirecor = curDiret;
             m_currentDirecor.EnterDierctor();
         }
+        public void UpDateCurrentDirector()
+        {
+            if (m_currentDirecor != null)
+                m_currentDirecor.Update();
+        }
     }
 }

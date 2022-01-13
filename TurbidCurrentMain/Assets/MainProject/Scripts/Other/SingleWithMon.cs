@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TurbidCurrent
 {
-    public class SingleWithMon<T> where T : MonoBehaviour, new()
+    public class SingleWithMon<T>:MonoBehaviour  where T :MonoBehaviour,new()
     {
         protected static T instacne;
         public static T Instance
@@ -18,6 +18,6 @@ namespace TurbidCurrent
                 return instacne;
             }
         }
-        private SingleWithMon() { }
+        protected SingleWithMon() { }
     }
 }

@@ -8,13 +8,13 @@ public class Test : MonoBehaviour
     private void Awake()
     {
         BoxMessage.RegisterMessage("Debug", () => { Debug.Log("11111"); });
-        BoxMessage.RegisterMessage("Debug", () => { Debug.Log("11111"); });
-
+        BoxMessage<string>.RegisterMessage("MDebug", (string mes) => { Debug.Log(mes); });
     }
 
     void Start()
     {
         BoxMessage.DispenseMessage("Debug");
+        BoxMessage<string>.DispenseMessage("MDebug", "Hello World");
         //Debug.Log("Encoding GB1312:              "+Encoding.GetEncoding("GB2312").ToString());
         //Debug.Log("Encoding Default:                "+Encoding.Default.ToString());
 
