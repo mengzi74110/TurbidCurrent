@@ -7,21 +7,21 @@ namespace TurbidCurrent
 {
     public class UIManager : SingleWithMon<UIManager>
     {
-        //还没有销毁的全屏界面；
+        //还没有销毁的全屏界面；（用于倒退到上一个打开的界面）
         private Stack<UIBase> m_ShowedStack=new Stack<UIBase>();
         //所有存在Hierarchy的UI界面；
         private Dictionary<UIFlag, UIBase> m_AllUIBaseDic = new Dictionary<UIFlag, UIBase>();
         //正在加载的UI界面；
         private List<UIFlag> cachingUI = new List<UIFlag>();
+        //所有加载过的BundleUIPrefab
+        private Dictionary<UIFlag, BundleUIPrefab> AssetsDic = new Dictionary<UIFlag, BundleUIPrefab>();
 
-        private List<BundlePrefab> assets = new List<BundlePrefab>();
-
-        public void ShowUIAsync(UIFlag flag,object uiData)
+        public void ShowUIAsync(string packName, UIFlag flag,object uiData)
         {     
-            UICoroutine.instacne.StartCoroutine(ShowUIFlagSync(flag, uiData));       
+            UICoroutine.Instance.StartCoroutine(ShowUIFlagSync(packName,flag, uiData));       
         }
 
-        IEnumerator ShowUIFlagSync(UIFlag flag,object data)
+        IEnumerator ShowUIFlagSync(string packeName, UIFlag flag,object data)
         {
             if (IsCachingUI(flag))
                 yield break;
@@ -29,9 +29,13 @@ namespace TurbidCurrent
             //TODO:增加一个方法遮罩整个界面；
 
             cachingUI.Add(flag);//开始加载UI，加入缓存列表；加载结束从列表中清除；
-
-            BundlePrefab asset  = new BundlePrefab(flag.ToString());
-            assets.Add(asset);
+            BundleUIPrefab asset;
+            if (!AssetsDic.TryGetValue(flag, out asset))
+            {
+                asset = new BundleUIPrefab(packeName,flag.ToString());
+                AssetsDic.Add(flag, asset);
+            }
+          
             bool loaded = false;
             asset.Load(() =>
             {
@@ -96,10 +100,12 @@ namespace TurbidCurrent
         {
             //关闭协同程序；
             UICoroutine.instacne.gameObject.SetActive(false);
-            for (int i = 0; i < assets.Count; i++)
+            foreach (var item in AssetsDic.Values)
             {
-                assets[i].Release();
+                item.Release();
             }
+            AssetsDic.Clear();
+
             m_ShowedStack.Clear();
             cachingUI.Clear();
             foreach (var uibase in m_AllUIBaseDic.Values)
@@ -121,7 +127,14 @@ namespace TurbidCurrent
                 return;
             m_AllUIBaseDic.Add(flag, uibase);
         }
+
+
         public void RemoveDic(UIFlag flag)
+        {
+            if (m_AllUIBaseDic.ContainsKey(flag))
+                m_AllUIBaseDic.Remove(flag);
+        }
+        public void DestoryUI(UIFlag flag)
         {
             UIBase targetUI;
             if(m_AllUIBaseDic.TryGetValue(flag,out targetUI))
