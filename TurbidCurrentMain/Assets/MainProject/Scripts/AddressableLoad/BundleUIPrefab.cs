@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Common
 {
     public class BundleUIPrefab : BundleBase<GameObject>
     {
-        string m_packageName ; //UIPrefab±£´æµÄ¶ş¼¶ÎÄ¼ş¼ĞÂ·¾¶£»
+        string m_packageName ; //UIPrefabä¿å­˜çš„äºŒçº§æ–‡ä»¶å¤¹è·¯å¾„ï¼›
         string m_uiName ; //UIFlag 
         public override string AddressName
         {
