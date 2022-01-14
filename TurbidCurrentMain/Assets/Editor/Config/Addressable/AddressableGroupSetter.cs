@@ -113,6 +113,12 @@ public class AddressableGroupSetter : ScriptableObject
             return EditorHelper.GetAddress_RelativePath(assetPath, AllEditorPathConfig.TargetTblFolder);
         });
 
+        //AudioClip
+        ResetGroup<AudioClip>("audioclip", GroupType.RemoteLogin, BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}AudioClip/", "f:*.mp3", assetPath =>
+        {
+            return EditorHelper.GetAddress_RelativePath(assetPath, $"{AllEditorPathConfig.Folder_main}AudioClip/");
+        });
+
         //// ai
         //ResetGroup<ScriptableObject>("main_ai", BundlePackingMode.PackTogether, $"{Folder_main}AI/", "f:*.asset", assetPath =>
         //{
