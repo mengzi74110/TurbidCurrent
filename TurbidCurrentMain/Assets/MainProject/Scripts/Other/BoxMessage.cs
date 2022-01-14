@@ -7,31 +7,6 @@ namespace TurbidCurrent
     internal static class MessagerInternal
     {
         public static Dictionary<string, Delegate> m_DicMessage=new Dictionary<string, Delegate>();
-        public static void RegisterMessage(string messageName, Delegate callback)
-        {
-            if (m_DicMessage.ContainsKey(messageName))
-            {
-                MDebug.LogError($"{messageName}  消息注册的两次！");
-                return;
-            }
-        }
-
-        public static void RemoveMessage(string messageName)
-        {
-            if(!m_DicMessage.ContainsKey(messageName))
-            {
-                MDebug.LogError($" MessageName:{messageName} don't Regist In Dictionary!");
-            }
-        }
-
-        public static void DispenseMessage(string messageName)
-        {
-            if(m_DicMessage.ContainsKey(messageName))
-            {
-                MDebug.LogError($"MessageName{messageName} Don't Exist!");
-            }
-        }
-
     }
 
     public class BoxMessage

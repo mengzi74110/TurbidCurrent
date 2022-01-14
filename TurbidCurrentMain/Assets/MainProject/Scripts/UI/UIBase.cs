@@ -54,7 +54,7 @@ namespace TurbidCurrent
 
         protected virtual void Destroy()
         {
-            Destroy(this.gameObject);
+            UIManager.Instance.RemoveDic(this.m_uiFlag);
         }
     }
 }

@@ -128,20 +128,26 @@ namespace TurbidCurrent
             m_AllUIBaseDic.Add(flag, uibase);
         }
 
-
+        /// <summary>
+        /// 只是把UIFlag从字典中移除
+        /// </summary>
+        /// <param name="flag"></param>
         public void RemoveDic(UIFlag flag)
         {
             if (m_AllUIBaseDic.ContainsKey(flag))
                 m_AllUIBaseDic.Remove(flag);
         }
+        /// <summary>
+        /// 把UIFalg从字典中移除，并且删除；
+        /// </summary>
+        /// <param name="flag"></param>
         public void DestoryUI(UIFlag flag)
         {
             UIBase targetUI;
             if(m_AllUIBaseDic.TryGetValue(flag,out targetUI))
             {
-                targetUI.OnDestroy();
+                Destroy(targetUI.gameObject);             
             }
-            m_AllUIBaseDic.Remove(flag);
         }
     }
 }
