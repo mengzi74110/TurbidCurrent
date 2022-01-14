@@ -29,7 +29,7 @@ namespace TurbidCurrent
             Destroy();
         }
 
-        public bool ActiveSelf
+        public virtual bool ActiveSelf
         {
             get
             {
