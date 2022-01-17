@@ -13,6 +13,7 @@ namespace TurbidCurrent
         public void InitAllManager()
         {
             DirectorManager.Instance.CreatManager().transform.SetParent(Instance.transform);
+            PostEffectManager.Instance.CreatManager().transform.SetParent(Instance.transform);
             AudioManager.Instance.CreatManager().transform.SetParent(Instance.transform);
             UIManager.Instance.CreatManager().transform.SetParent(Instance.transform);
             LittleRedPointManager.Instance.CreatManager().transform.SetParent(Instance.transform);
