@@ -13,6 +13,7 @@ namespace TurbidCurrent
 
         protected override void OnStart()
         {
+            UIManager.Instance.ShowUIAsync("Logo", UIFlag.UI_LogoWnd, null);
             LittleRedPointUI.LoadRedPointUI();
         }
 
