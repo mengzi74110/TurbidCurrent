@@ -70,6 +70,7 @@ namespace Common
         // 异步加载资源
         protected async virtual void AddressableLoad()
         {
+            MDebug.Log("Load AddressName:"+ AddressName);
             m_asyncHandle = Addressables.LoadAssetAsync<TObject>(AddressName);
             AssetObj = await m_asyncHandle.Value.Task;
             if (!AssetObj)

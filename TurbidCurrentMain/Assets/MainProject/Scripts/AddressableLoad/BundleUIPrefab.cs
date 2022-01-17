@@ -6,12 +6,13 @@ namespace Common
     public class BundleUIPrefab : BundleBase<GameObject>
     {
         string m_packageName ; //UIPrefab保存的二级文件夹路径；
-        string m_uiName ; //UIFlag 
+        string m_uiName ; //UIFlag
+        const string uiString = "ui/";
         public override string AddressName
         {
             get
             {
-                string address = $"{m_packageName}/{m_uiName}";
+                string address = $"{uiString}{m_packageName}/{m_uiName}";
                 address = address.ToLower().Replace("\\", "@").Replace("/", "@");
                 return address;
             }
@@ -20,7 +21,7 @@ namespace Common
 
         public GameObject CloneObj()
         {
-            return UnityEngine.Object.Instantiate(AssetObj, null);
+            return UnityEngine.GameObject.Instantiate(AssetObj, null);
         }
 
         public GameObject CloneObj(Transform parentTrans)
@@ -31,8 +32,6 @@ namespace Common
         {
             return UnityEngine.Object.Instantiate(AssetObj, pos, qua, parentTrans);
         }
-
-
 
 
         public BundleUIPrefab(string packName,string assetName) 

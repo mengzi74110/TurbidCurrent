@@ -24,7 +24,10 @@ namespace TurbidCurrent
         IEnumerator ShowUIFlagSync(string packeName, UIFlag flag,object data)
         {
             if (IsCachingUI(flag))
+            {
+                m_AllUIBaseDic[flag].OnShow(data);
                 yield break;
+            }
 
             //TODO:增加一个方法遮罩整个界面；
 
@@ -46,13 +49,13 @@ namespace TurbidCurrent
                 yield return null;
             }
 
-            GameObject go = asset.CloneObj();
+            GameObject go = asset.CloneObj(CanvasRoot.UICanvasRoot);
             go.transform.SetAsLastSibling();
             UIBase uibase = go.GetComponent<UIBase>();
             uibase.OnShow(data);
 
             cachingUI.Remove(flag);
-
+            LittleRedPointManager.Instance.RegisterDic(uibase as ILittleRedPoint);
             //TODO:加载完成取消遮罩；
         }
 
@@ -91,12 +94,12 @@ namespace TurbidCurrent
             UIBase currentUI= m_ShowedStack.Pop();
             if (currentUI != null)
             {
-                currentUI.OnDestroy();
+                currentUI.DestroySelf(); //销毁还是隐藏；
             }
         }
 
         //销毁所有UI界面；
-        public void Clear(bool isGC)
+        public void Clear()
         {
             //关闭协同程序；
             UICoroutine.instacne.gameObject.SetActive(false);
@@ -110,11 +113,10 @@ namespace TurbidCurrent
             cachingUI.Clear();
             foreach (var uibase in m_AllUIBaseDic.Values)
             {
-                uibase.OnDestroy();
+                uibase.DestroySelf();
             }
             m_AllUIBaseDic.Clear();
-            if (isGC)
-                GC.Collect();
+           
         }
 
         public void RegistDic(UIFlag flag,UIBase uibase)
@@ -124,6 +126,8 @@ namespace TurbidCurrent
                 MDebug.LogError($"请检查注册进UIManger的UIPanel :{flag.ToString()}");
             }
             if (m_AllUIBaseDic.ContainsKey(flag))
+                return;
+            if (flag == UIFlag.RedPoint)
                 return;
             m_AllUIBaseDic.Add(flag, uibase);
         }
@@ -146,7 +150,7 @@ namespace TurbidCurrent
             UIBase targetUI;
             if(m_AllUIBaseDic.TryGetValue(flag,out targetUI))
             {
-                Destroy(targetUI.gameObject);             
+                GameObject.Destroy(targetUI.gameObject);             
             }
         }
     }

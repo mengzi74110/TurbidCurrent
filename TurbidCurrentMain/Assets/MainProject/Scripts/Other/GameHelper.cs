@@ -47,4 +47,22 @@ public static class GameHelper
 
         return false;
     }
+    public static Transform FincChildWithName(this Transform self,string childName)
+    {
+        if (self.name == childName)
+            return self;
+        if (self.childCount < 1)
+        {
+            return null;
+        }
+        Transform target = null;
+        for (int i = 0; i < self.childCount; i++)
+        {
+            target = self.GetChild(i).FincChildWithName(childName);
+            if (target != null)
+                return target;
+        }
+        return target;
+    }
+
 }

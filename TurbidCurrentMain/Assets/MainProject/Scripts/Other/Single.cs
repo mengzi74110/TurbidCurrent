@@ -12,6 +12,10 @@ namespace TurbidCurrent
                 return instance;
             }
         }
+        public T CreatManager()
+        {
+            return Instacne;
+        }
 
         protected Single() { }
     }

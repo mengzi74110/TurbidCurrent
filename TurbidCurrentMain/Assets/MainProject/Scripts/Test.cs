@@ -2,13 +2,20 @@
 using UnityEngine;
 using System.Text;
 using System.IO;
+using UnityEngine.UI;
+using UnityEngine.U2D;
 using TurbidCurrent;
 public class Test : MonoBehaviour
 {
+    public Image m_image;
+    public Canvas canvasRoot;
     private void Awake()
     {
         BoxMessage.RegisterMessage("Debug", () => { Debug.Log("11111"); });
         BoxMessage<string>.RegisterMessage("MDebug", (string mes) => { Debug.Log(mes); });
+        //SpriteAtlas atlas= Resources.Load<SpriteAtlas>("atlas_common");
+        //m_image.sprite = atlas.GetSprite("littleRed");
+        UIManager.Instance.ShowUIAsync("Logo", UIFlag.UI_LogoWnd, null);
     }
 
     void Start()

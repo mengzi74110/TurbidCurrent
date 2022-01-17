@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TurbidCurrent
 {
-    public class DirectorManager : Single<DirectorManager>
+    public class DirectorManager : SingleWithMon<DirectorManager>
     {
         DirectorBase m_currentDirecor;
 
@@ -18,7 +18,7 @@ namespace TurbidCurrent
             m_currentDirecor = curDiret;
             m_currentDirecor.EnterDierctor();
         }
-        public void UpDateCurrentDirector()
+        public void Update()
         {
             if (m_currentDirecor != null)
                 m_currentDirecor.Update();

@@ -13,10 +13,13 @@ namespace TurbidCurrent
                 {
                     GameObject go = new GameObject(typeof(T).ToString());
                     instacne = go.AddComponent<T>();
-                    GameObject.DontDestroyOnLoad(go);
                 }
                 return instacne;
             }
+        }
+        public T CreatManager()
+        {
+            return Instance;
         }
         protected SingleWithMon() { }
     }

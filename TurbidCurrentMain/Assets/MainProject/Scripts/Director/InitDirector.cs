@@ -8,12 +8,12 @@ namespace TurbidCurrent
     {
         protected override void OnAwake()
         {
-            
+            ManagerAll.Instance.InitAllManager();
         }
 
         protected override void OnStart()
         {
-            
+            LittleRedPointUI.LoadRedPointUI();
         }
 
         protected override void OnExit()

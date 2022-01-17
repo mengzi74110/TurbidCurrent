@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
-public interface ILittleRedPoint
+namespace TurbidCurrent
 {
-    IEnumerator<LittleRedPoint> GetLittleRedPoint();
-}  
+    public interface ILittleRedPoint
+    {
+        IEnumerable<LittleRedPoint> GetLittleRedPoint();
+    }
+}
          
