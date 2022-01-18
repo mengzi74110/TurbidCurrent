@@ -119,6 +119,17 @@ public class AddressableGroupSetter : ScriptableObject
             return EditorHelper.GetAddress_RelativePath(assetPath, $"{AllEditorPathConfig.Folder_main}AudioClip/");
         });
 
+        // ImageSprite
+        ResetGroup<Texture2D>("art_image", GroupType.RemoteLogin, BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}SpriteTexture/", "t:Texture2D", assetPath =>
+        {
+            return EditorHelper.GetAddress_RelativePath(assetPath, $"{AllEditorPathConfig.Folder_main}/");
+        });
+        // EffectIamge
+        ResetGroup<Texture2D>("effect_image", GroupType.RemoteLogin, BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}EffectImage/", "t:Texture2D", assetPath =>
+        {
+            return EditorHelper.GetAddress_RelativePath(assetPath, $"{AllEditorPathConfig.Folder_main}/");
+        });
+
         //// ai
         //ResetGroup<ScriptableObject>("main_ai", BundlePackingMode.PackTogether, $"{Folder_main}AI/", "f:*.asset", assetPath =>
         //{
