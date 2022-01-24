@@ -137,7 +137,7 @@ namespace TurbidCurrent.NetWork
             {
                 Socket socket = (Socket)ar.AsyncState;
                 socket.EndConnect(ar);
-                MDebug.Log("Socket 连接成功！");
+                MDebug.Log("Socket 连接成功！",DebugEnum.NetWork);
                 DispenseEvent(NetEvent.ConnectSuccess, "");
                 isConnecting = false;
                 socket.BeginReceive(readBuffer.bytes, readBuffer.writeIndex, readBuffer.remain, 0, ReceiveCallback, socket);
@@ -169,7 +169,7 @@ namespace TurbidCurrent.NetWork
             }
             catch(SocketException ex)
             {
-                MDebug.Log("Socket Receive 失败！" + ex.ToString());
+                MDebug.Log("Socket Receive 失败！" + ex.ToString(),DebugEnum.NetWork);
             }
         }
         //处理接收数据；
