@@ -410,7 +410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8406036565472718316, guid: c5b36cf812efe4bc493d74c5994b9b85, type: 3}
       propertyPath: m_IsActive
+<<<<<<< HEAD
       value: 0
+=======
+      value: 1
+>>>>>>> baf1a0b16283aa50ee289e6b6ad27ed70266ab4b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b36cf812efe4bc493d74c5994b9b85, type: 3}
@@ -552,7 +556,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 1
+=======
+  m_IsActive: 0
+>>>>>>> baf1a0b16283aa50ee289e6b6ad27ed70266ab4b
 --- !u!114 &1646569895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,6 +684,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_LoadingPanel
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 6194973696654071584, guid: 1ee6758eda62c41d68955c39ee0596cc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.477
@@ -696,5 +705,7 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.477
       objectReference: {fileID: 0}
+=======
+>>>>>>> baf1a0b16283aa50ee289e6b6ad27ed70266ab4b
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ee6758eda62c41d68955c39ee0596cc, type: 3}
