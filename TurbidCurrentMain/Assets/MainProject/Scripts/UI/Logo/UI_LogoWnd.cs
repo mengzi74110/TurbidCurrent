@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
-
+using Common;
 namespace TurbidCurrent
 {
     public class UI_LogoWnd : UIBase
@@ -17,6 +17,7 @@ namespace TurbidCurrent
         private Image m_BgImage;
         Sequence m_quence;
 
+     
         IEnumerator m_IEShowTVImage;
 
         protected override void OnAwake()
@@ -62,13 +63,21 @@ namespace TurbidCurrent
             yield return new WaitForSeconds(1.0f);
             PostEffectManager.Instance.GetFromDic(ShaderEnum.Interference_PE).SetActive = false;
             StopCoroutine(m_IEShowTVImage);
+            
             DestroySelf();
         }
         public override void DestroySelf()
         {
             PostEffectManager.Instance.GetFromDic(ShaderEnum.Interference_PE).SetActive = false;
+            m_IEShowTVImage = null;
             base.DestroySelf();
         }
+
+        private void InitLoadSprite()
+        {
+
+        }
+
         protected override void SetUIFlag()
         {
             this.m_uiFlag = UIFlag.UI_LogoWnd;

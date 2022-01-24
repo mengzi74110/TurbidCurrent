@@ -11,17 +11,19 @@ public class Test : MonoBehaviour
     public Canvas canvasRoot;
     private void Awake()
     {
-        BoxMessage.RegisterMessage("Debug", () => { Debug.Log("11111"); });
-        BoxMessage<string>.RegisterMessage("MDebug", (string mes) => { Debug.Log(mes); });
+
+        MDebug.Log("Hello Green", DebugEnum.NetWork);
+        //BoxMessage.RegisterMessage("Debug", () => { Debug.Log("11111"); });
+        //BoxMessage<string>.RegisterMessage("MDebug", (string mes) => { Debug.Log(mes); });
         //SpriteAtlas atlas= Resources.Load<SpriteAtlas>("atlas_common");
         //m_image.sprite = atlas.GetSprite("littleRed");
-        UIManager.Instance.ShowUIAsync("Logo", UIFlag.UI_LogoWnd, null);
+        //UIManager.Instance.ShowUIAsync("Logo", UIFlag.UI_LogoWnd, null);
     }
 
     void Start()
     {
-        BoxMessage.DispenseMessage("Debug");
-        BoxMessage<string>.DispenseMessage("MDebug", "Hello World");
+        //BoxMessage.DispenseMessage("Debug");
+        //BoxMessage<string>.DispenseMessage("MDebug", "Hello World");
         //Debug.Log("Encoding GB1312:              "+Encoding.GetEncoding("GB2312").ToString());
         //Debug.Log("Encoding Default:                "+Encoding.Default.ToString());
 
