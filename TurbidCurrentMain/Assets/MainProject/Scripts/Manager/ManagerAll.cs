@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TurbidCurrent.NetWork;
 namespace TurbidCurrent
 {
-
     public class ManagerAll :SingleWithMon<ManagerAll>
     {
         private void Awake()
@@ -18,6 +18,7 @@ namespace TurbidCurrent
             UIManager.Instance.CreatManager().transform.SetParent(Instance.transform);
             LittleRedPointManager.Instance.CreatManager().transform.SetParent(Instance.transform);
             UICoroutine.Instance.CreatManager().transform.SetParent(Instance.transform);
+            //NetWorkManager.Instance.CreatManager().transform.SetParent(Instance.transform);
         }
         public void Clear(bool isGC)
         {
@@ -28,6 +29,10 @@ namespace TurbidCurrent
                 Resources.UnloadUnusedAssets();
                 System.GC.Collect();
             }
+        }
+        private void Update()
+        {
+            
         }
     }
 }

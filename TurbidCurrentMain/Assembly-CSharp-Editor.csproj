@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.12</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.14</UnityProjectGeneratorVersion>
     <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2021.1.16f1c1</UnityVersion>
@@ -57,21 +57,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\Config\Addressable\PathHelper.cs" />
-    <Compile Include="Assets\Editor\Config\Addressable\ConfigHorizontalFile.cs" />
-    <Compile Include="Assets\Editor\Config\Addressable\Decoder\ConfigExcelDecoder.cs" />
-    <Compile Include="Assets\Editor\Config\FBEditorHelper.cs" />
+    <Compile Include="Assets\Editor\Config\ConfigConvert\ConfigHorizontalFile.cs" />
+    <Compile Include="Assets\Editor\Config\ConfigConvert\Decoder\ConfigExcelDecoder.cs" />
+    <Compile Include="Assets\Editor\Config\EditorHelper.cs" />
     <Compile Include="Assets\Editor\Config\CommonTools\ConvertUTF8Tools.cs" />
-    <Compile Include="Assets\Editor\Config\Addressable\ConfigFile.cs" />
+    <Compile Include="Assets\Editor\Config\ConfigConvert\ConfigFile.cs" />
+    <Compile Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
     <Compile Include="Assets\Editor\Config\CommonTools\CompressTexture\TextureCompressTool.cs" />
-    <Compile Include="Assets\Editor\Config\Addressable\Decoder\ConfigCSVDecoder.cs" />
+    <Compile Include="Assets\Editor\Config\ConfigConvert\Decoder\ConfigCSVDecoder.cs" />
+    <Compile Include="Assets\Editor\Config\ConfigConvert\ConfigConverter.cs" />
+    <Compile Include="Assets\Editor\Config\ConfigConvert\ConfigVerticalFile.cs" />
+    <Compile Include="Assets\Editor\Config\ConfigConvert\ConfigConverterSettings.cs" />
     <Compile Include="Assets\Editor\Config\AllEditorPathConfig.cs" />
-    <Compile Include="Assets\Editor\Config\Addressable\ConfigConverterSettings.cs" />
+    <Compile Include="Assets\Editor\Config\Addressable\AddressableGroupSetter.cs" />
+    <Compile Include="Assets\Editor\Config\Addressable\AddressableGroupData.cs" />
     <Compile Include="Assets\Editor\Config\AssetImporter\AssetImporterProcessor.cs" />
+    <Compile Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />
+    <None Include="Assets\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
     <None Include="Assets\Editor\Config\EPPlus 4.1\DotNet35\EPPlus.XML" />
+    <None Include="Assets\Demigiant\DOTween\Editor\DOTweenEditor.dll" />
     <None Include="Assets\Editor\Config\EPPlus 4.1\DotNet4\EPPlus.XML" />
+    <None Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenProEditor.XML" />
+    <None Include="Assets\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll" />
     <None Include="Assets\Editor\Config\EPPlus 4.1\DotNet4\EPPlus.dll" />
+    <None Include="Assets\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\Editor\Config\EPPlus 4.1\readme.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -318,11 +330,23 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.1.16f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>Assets\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.7.1\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenProEditor">
+      <HintPath>Assets\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiEditor">
+      <HintPath>Assets\Demigiant\DemiLib\Core\Editor\DemiEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
@@ -330,11 +354,17 @@
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.7.1\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>Assets\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>Assets\Editor\Config\EPPlus 4.1\DotNet4\EPPlus.dll</HintPath>
@@ -740,6 +770,9 @@
     </Reference>
     <Reference Include="VSSettingsProvider">
       <HintPath>Library\ScriptAssemblies\VSSettingsProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline">
       <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>

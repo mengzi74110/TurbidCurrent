@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.12</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.14</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2021.1.16f1c1</UnityVersion>
@@ -56,14 +56,91 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MainProject\Scripts\Manager\UIManager.cs" />
+    <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenProShortcuts.cs" />
+    <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenTextMeshPro.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Other\MDebug.cs" />
+    <Compile Include="Assets\MainProject\Scripts\AddressableLoad\BundleBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Manager\UICoroutine.cs" />
+    <Compile Include="Assets\MainProject\Scripts\AddressableLoad\IProgressBar.cs" />
+    <Compile Include="Assets\MainProject\Scripts\AddressableLoad\BundleConfig.cs" />
+    <Compile Include="Assets\MainProject\Scripts\NetWork\Core\ByteArray.cs" />
+    <Compile Include="Assets\MainProject\Scripts\NetWork\Core\NetWorkManager.cs" />
+    <Compile Include="Assets\MainProject\Scripts\UI\CanvasRoot.cs" />
+    <Compile Include="Assets\Resources\PostEffectScripts\PostEffectBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Other\ShaderHelper.cs" />
+    <Compile Include="Assets\MainProject\Scripts\GlobalData\GlobalData.cs" />
+    <Compile Include="Assets\MainProject\Scripts\LittleRedPoint\LittleRedPointUI.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Manager\ManagerAll.cs" />
     <Compile Include="Assets\MainProject\Scripts\Other\GameHelper.cs" />
-    <Compile Include="Assets\MainProject\Scripts\UI\Test.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
+    <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenTk2d.cs" />
+    <Compile Include="Assets\MainProject\Scripts\AddressableLoad\BundleAtlas.cs" />
+    <Compile Include="Assets\Resources\PostEffectScripts\Interference_PE.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\MainProject\Scripts\UI\Logo\UI_LogoWnd.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Other\BoxMessage\MessageCallBack.cs" />
+    <Compile Include="Assets\MainProject\Scripts\GameLanchuer.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Manager\LittleRedPointManager.cs" />
+    <Compile Include="Assets\MainProject\Scripts\GlobalData\UIData.cs" />
+    <Compile Include="Assets\MainProject\Scripts\LittleRedPoint\ILittleRedPoint.cs" />
+    <Compile Include="Assets\MainProject\Scripts\AddressableLoad\BundleNormal.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Director\DirectorBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Manager\AudioManager.cs" />
+    <Compile Include="Assets\MainProject\Scripts\AddressableLoad\BundlePrefab.cs" />
+    <Compile Include="Assets\MainProject\Scripts\NetWork\Core\MsgBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\UI\UIBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Other\SingleWithMon.cs" />
+    <Compile Include="Assets\MainProject\Scripts\UI\LoadingPanelWnd.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Manager\DirectorManager.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Director\InitDirector.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Manager\PostEffectManager.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\MainProject\Scripts\AddressableLoad\BundleUIPrefab.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Test.cs" />
+    <Compile Include="Assets\MainProject\Scripts\NetWork\Protocol\AsyncMsg.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Other\Single.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Other\BoxMessage\BoxMessage.cs" />
+    <Compile Include="Assets\MainProject\Scripts\LittleRedPoint\LittleRedPoint.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Art_Resources\BuildAssets\Model\Role\ReadMe.txt" />
     <None Include="Assets\MainProject\Scripts\Config\Define\DefineFolderReadMe.txt" />
     <None Include="Assets\MainProject\Scripts\Config\LuaScripts\LuaFolderReadMe.txt" />
-    <None Include="Assets\MainProject\Config\Asset\Asset.txt" />
-    <None Include="Assets\MainProject\Config\Tbl\Tbl.txt" />
+    <None Include="Assets\MainProject\BuildAssets\Config\Asset\Asset.txt" />
+    <None Include="Assets\Art_Resources\BuildAssets\Effect\ReadMe.txt" />
+    <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
+    <None Include="Assets\Demigiant\DOTween\DOTween.XML" />
+    <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.dll" />
+    <None Include="Assets\Art_Resources\BuildAssets\Model\Decorations\ReadMe.txt" />
+    <None Include="Assets\Art_Resources\BuildAssets\Model\Plant\ReadMe.txt" />
+    <None Include="Assets\Art_Resources\BuildAssets\Clothes\Prefab\ReadMe.txt" />
+    <None Include="Assets\Art_Resources\BuildAssets\MainTexture\UI\ReadMe.txt" />
+    <None Include="Assets\Resources\Shader\UVMotion.shader" />
+    <None Include="Assets\MainProject\UI\Animation\ReadMe.txt" />
+    <None Include="Assets\Other_Resources\BuildAssets\ReadMe.txt" />
+    <None Include="Assets\Demigiant\DOTween\DOTween.dll" />
+    <None Include="Assets\Art_Resources\BuildAssets\Clothes\Cnfig\Bone\ReadMe.txt" />
+    <None Include="Assets\Art_Resources\BuildAssets\Model\Building\ReadMe.txt" />
+    <None Include="Assets\MainProject\BuildAssets\Config\Tbl\t_item.txt" />
+    <None Include="Assets\MainProject\BuildAssets\Config\Tbl\Tbl.txt" />
+    <None Include="Assets\MainProject\BuildAssets\Prefab\ReadMe.txt" />
+    <None Include="Assets\Art_Resources\BuildAssets\TimeLine\ReadMe.txt" />
+    <None Include="Assets\MainProject\UI\Font\ReadMe.txt" />
+    <None Include="Assets\Demigiant\DOTweenPro\DOTweenPro.dll" />
+    <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
+    <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />
+    <None Include="Assets\Demigiant\DOTweenPro\DOTweenPro.XML" />
+    <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Art_Resources\BuildAssets\Animation\ReadMe.txt" />
+    <None Include="Assets\Resources\Shader\PostEffectShader\Interference.shader" />
+    <None Include="Assets\Art_Resources\BuildAssets\ParticleSystemAtlas\ReadMe.txt" />
+    <None Include="Assets\ThirdParty\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -297,11 +374,20 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.1.16f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>Assets\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>Assets\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.1.16f1c1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -689,6 +775,9 @@
     </Reference>
     <Reference Include="VSSettingsProvider">
       <HintPath>Library\ScriptAssemblies\VSSettingsProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline">
       <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
