@@ -6,8 +6,9 @@ namespace TurbidCurrent.NetWork
 {
     /// <summary>
     /// 协议规则：
+    /// 0：协议长度
     /// 1：协议名 与类名相同
-    /// 2:
+    /// 2: 协议体
     /// </summary>
     public abstract class MsgBase 
     {
