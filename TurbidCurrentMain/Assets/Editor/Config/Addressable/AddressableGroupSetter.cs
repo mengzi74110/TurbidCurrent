@@ -8,6 +8,7 @@ using static UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGro
 using System.Text;
 using System;
 using System.IO;
+using UnityEngine.U2D;
 
 public class AddressableGroupSetter : ScriptableObject
 {
@@ -127,14 +128,14 @@ public class AddressableGroupSetter : ScriptableObject
         // EffectIamge
         ResetGroup<Texture2D>("effect_image", GroupType.RemoteLogin, BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}EffectImage/", "t:Texture2D", assetPath =>
         {
-            return EditorHelper.GetAddress_RelativePath(assetPath, $"{AllEditorPathConfig.Folder_main}/");
+            return EditorHelper.GetAddress_RelativePath(assetPath, $"{AllEditorPathConfig.Folder_main}");
         });
 
-        //// ai
-        //ResetGroup<ScriptableObject>("main_ai", BundlePackingMode.PackTogether, $"{Folder_main}AI/", "f:*.asset", assetPath =>
-        //{
-        //    return EditorHelper.GetAddress_RelativePath(assetPath, Folder_main);
-        //});
+        // atlas
+        ResetGroup<SpriteAtlas>("main_atlas", GroupType.RemoteLogin, BundlePackingMode.PackTogether, $"{AllEditorPathConfig.Folder_main}/UI/Atlas/", "t:spriteatlas", assetPath =>
+        {
+            return EditorHelper.GetAddress_RelativePath(assetPath, $"{AllEditorPathConfig.Folder_main}");
+        });
 
         //// anim
         //ResetGroup<RuntimeAnimatorController>("main_anim", BundlePackingMode.PackTogether, $"{Folder_main}Anim/", "f:*.controller", assetPath =>
@@ -180,7 +181,7 @@ public class AddressableGroupSetter : ScriptableObject
 
     static void ResetGroup<T>(string groupName, GroupType groupType, BundlePackingMode packMode, string assetFolder, string filter, Func<string, string> getAddress)
     {
-        Debug.Log("暂时把所有的GroupType 设置为GroupType.Local");
+        //TODO:("暂时把所有的GroupType 设置为GroupType.Local");
         groupType = GroupType.Local;
 #if UNITY_EDITOR_OSX
         if (groupType == GroupType.RemoteLogin)
