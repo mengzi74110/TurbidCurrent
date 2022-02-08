@@ -3,9 +3,11 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
 using Common;
+using System.Collections.Generic;
+
 namespace TurbidCurrent
 {
-    public class UI_LogoWnd : UIBase
+    public class UI_LogoWnd : UIBase,ILittleRedPoint
     {
         [SerializeField]
         private Text m_contentUp;
@@ -89,6 +91,9 @@ namespace TurbidCurrent
             this.m_screenFlag = ScreenFlag.FullScreen;
         }
 
-      
+        public IEnumerable<LittleRedPoint> GetLittleRedPoint()
+        {
+            yield return new LittleRedPoint(transform, Vector3.zero, () => { return true; });
+        }
     }
 }
