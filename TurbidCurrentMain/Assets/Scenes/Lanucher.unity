@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_LogoWnd
       objectReference: {fileID: 0}
+    - target: {fileID: 8498439184854656719, guid: ef885a821470d4400a0e2565c6d0e26b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef885a821470d4400a0e2565c6d0e26b, type: 3}
 --- !u!1 &705507993
@@ -435,7 +439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1154976824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1646569895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,6 +679,10 @@ PrefabInstance:
     - target: {fileID: 6194973696328624760, guid: 1ee6758eda62c41d68955c39ee0596cc, type: 3}
       propertyPath: m_Name
       value: UI_LoadingPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194973696328624760, guid: 1ee6758eda62c41d68955c39ee0596cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6194973696654071584, guid: 1ee6758eda62c41d68955c39ee0596cc, type: 3}
       propertyPath: m_AnchorMax.x
